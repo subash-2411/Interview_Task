@@ -523,11 +523,11 @@
                     </div>
                 </div>
                 <div class="text-white fw-bold" style="font-size:1.8rem; color: var(--accent-blue);">20% OFF</div>
-                <p class="text-muted small mb-3">On all State Transport bus bookings above ₹200. Valid till July 31.</p>
+                <p class="text-muted small mb-3">On all State Transport bus bookings above ₹200. Valid for this month.</p>
                 <div class="glass-card p-2 text-center" style="border-radius:8px; background: rgba(59,130,246,0.1);">
-                    <code class="text-accent-blue fw-bold" style="font-size:1.1rem; letter-spacing:2px;">BUS20TF</code>
+                    <code class="text-accent-blue fw-bold" style="font-size:1.1rem; letter-spacing:2px;">BUS20RB</code>
                 </div>
-                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: July 31, 2026</small>
+                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: <span class="offer-expiry-bus">Valid till month end</span></small>
             </div>
         </div>
         <div class="col-md-4">
@@ -544,7 +544,7 @@
                 <div class="glass-card p-2 text-center" style="border-radius:8px; background: rgba(16,185,129,0.1);">
                     <code class="text-success fw-bold" style="font-size:1.1rem; letter-spacing:2px;">TRAIN15</code>
                 </div>
-                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: Aug 15, 2026</small>
+                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: <span class="offer-expiry-train">Valid till 15th next month</span></small>
             </div>
         </div>
         <div class="col-md-4">
@@ -559,13 +559,36 @@
                 <div class="text-white fw-bold" style="font-size:1.8rem; color: #f59e0b;">₹500 OFF</div>
                 <p class="text-muted small mb-3">On first flight booking via RideBook. Economy class only.</p>
                 <div class="glass-card p-2 text-center" style="border-radius:8px; background: rgba(245,158,11,0.1);">
-                    <code class="text-warning fw-bold" style="font-size:1.1rem; letter-spacing:2px;">FLY500TF</code>
+                    <code class="text-warning fw-bold" style="font-size:1.1rem; letter-spacing:2px;">FLY500RB</code>
                 </div>
-                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: July 15, 2026</small>
+                <small class="text-muted d-block mt-2"><i class="bi bi-clock me-1"></i>Expires: <span class="offer-expiry-flight">Valid for 30 days</span></small>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        // 1. Bus offer: end of current month
+        const lastDayOfCurrentMonth = new Date(currentYear, now.getMonth() + 1, 0);
+        const busExpiryStr = `${months[lastDayOfCurrentMonth.getMonth()]} ${lastDayOfCurrentMonth.getDate()}, ${currentYear}`;
+        document.querySelectorAll('.offer-expiry-bus').forEach(el => el.innerText = busExpiryStr);
+
+        // 2. Train offer: 15 days from now
+        const trainExpiryDate = new Date(now.getTime() + 15 * 24 * 60 * 60 * 1000);
+        const trainExpiryStr = `${months[trainExpiryDate.getMonth()]} ${trainExpiryDate.getDate()}, ${trainExpiryDate.getFullYear()}`;
+        document.querySelectorAll('.offer-expiry-train').forEach(el => el.innerText = trainExpiryStr);
+
+        // 3. Flight offer: 30 days from now
+        const flightExpiryDate = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+        const flightExpiryStr = `${months[flightExpiryDate.getMonth()]} ${flightExpiryDate.getDate()}, ${flightExpiryDate.getFullYear()}`;
+        document.querySelectorAll('.offer-expiry-flight').forEach(el => el.innerText = flightExpiryStr);
+    });
+</script>
 
 <!-- =============================== SECTION: SOS & EMERGENCY =============================== -->
 <div id="section-sos" class="dash-section fade-in-up">
