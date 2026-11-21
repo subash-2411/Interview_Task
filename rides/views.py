@@ -9,7 +9,7 @@ import threading
 import database
 import config
 from notification_service import NotificationService
-from .flask_bridge import request, jsonify, render_template, redirect, session, Response, bridge_view
+from .django_adapter import request, jsonify, render_template, redirect, session, Response, bridge_view
 from django.views.decorators.csrf import csrf_exempt
 
 def get_local_ip():

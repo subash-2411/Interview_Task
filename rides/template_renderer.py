@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.loader import get_template
-from .flask_bridge import _storage
+from .django_adapter import _storage
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / 'templates'

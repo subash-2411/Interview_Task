@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from jinja2 import Environment
 from django.http import HttpResponse
-from .flask_bridge import _storage
+from .django_adapter import _storage
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = BASE_DIR / 'templates'
